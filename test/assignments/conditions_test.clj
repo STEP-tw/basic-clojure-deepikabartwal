@@ -40,4 +40,10 @@
   (testing "when given zero"
     (is (zero? (yudishtira 0)))))
 
-
+(deftest duplicating-first
+  (testing "idk what to write"
+    (is (= [1 1 2 3] (duplicate-first [1 2 3]))))
+  (testing "when given empty coll"
+    (is (nil? (duplicate-first []))))
+  (testing "when first element is nil"
+    (is (= [nil nil 1 2] (duplicate-first [nil 1 2])))))
