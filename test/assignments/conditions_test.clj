@@ -27,3 +27,17 @@
     (is (= "abc" (harishchandra "abc"))))
   (testing "when given zero"
     (is (zero? (harishchandra 0)))))
+
+(deftest dharmaraja-yudhishtra
+  (testing "when given true"
+    (is (yudishtira true)))
+  (testing "when given false"
+    (is (= :ashwathama (yudishtira false))))
+  (testing "when given nil"
+    (is (= :ashwathama (yudishtira nil))))
+  (testing "when given a number"
+    (is (= 13 (yudishtira 13))))
+  (testing "when given zero"
+    (is (zero? (yudishtira 0)))))
+
+
