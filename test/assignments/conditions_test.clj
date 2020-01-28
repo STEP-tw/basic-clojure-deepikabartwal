@@ -47,3 +47,13 @@
     (is (nil? (duplicate-first []))))
   (testing "when first element is nil"
     (is (= [nil nil 1 2] (duplicate-first [nil 1 2])))))
+
+(deftest five-point-to-someone
+  (testing "when second param is 5"
+    (is (= :chetan-bhagat (five-point-someone 2 5))))
+  (testing "when first param is 5"
+    (is (= :satan-bhagat (five-point-someone 5 2))))
+  (testing "when first param is greater"
+    (is (= :greece (five-point-someone 6 4))))
+  (testing "when first param is smaller"
+    (is (= :universe (five-point-someone 4 6)))))
