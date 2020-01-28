@@ -57,3 +57,19 @@
     (is (= :greece (five-point-someone 6 4))))
   (testing "when first param is smaller"
     (is (= :universe (five-point-someone 4 6)))))
+
+(deftest conditions-apply-test
+  (testing "for durga"
+    (is (= :durga (conditions-apply [:a :b :c :d]))))
+  (testing "for tuntun"
+    (is (= :tuntun (conditions-apply [3]))))
+  (testing "for wonder woman"
+    (is (= :wonder-woman (conditions-apply [1 2 3 4]))))
+  (testing "for cleopatra"
+    (is (= :cleopatra (conditions-apply [[0 1] [2 3] [4 5]])))))
+
+(deftest repeat-and-truncate-test
+  (testing "repeat and truncate less than twice the length of coll"
+    (is (= [0 1 2 0] (repeat-and-truncate (range 3) true true 4))))
+  (testing "repeat and truncate more than twice the length of coll"
+    (is (= [0 1 2 0 1 2] (repeat-and-truncate (range 3) true true 6)))))
