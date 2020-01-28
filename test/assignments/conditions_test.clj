@@ -13,3 +13,17 @@
     (is (= 2 (informative-divide 4 2)))
     (testing " zero denominator"
       (is (= :infinity (informative-divide 3 0))))))
+
+(deftest raja-harishchandra
+  (testing "when given true"
+    (is (harishchandra true)))
+  (testing "when given false"
+    (is (nil? (harishchandra false))))
+  (testing "when given nil"
+    (is (nil? (harishchandra nil))))
+  (testing "when given a number"
+    (is (= 2 (harishchandra 2))))
+  (testing "when given a string"
+    (is (= "abc" (harishchandra "abc"))))
+  (testing "when given zero"
+    (is (zero? (harishchandra 0)))))
