@@ -73,3 +73,11 @@
     (is (= [0 1 2 0] (repeat-and-truncate (range 3) true true 4))))
   (testing "repeat and truncate more than twice the length of coll"
     (is (= [0 1 2 0 1 2] (repeat-and-truncate (range 3) true true 6)))))
+
+(deftest order-in-words-test
+  (testing "when x is greater than y and y is greater than z"
+    (is (= [:x-greater-than-y :y-greater-than-z] (order-in-words 4 3 2))))
+  (testing "when x is greater than y and z is greater than x"
+    (is (= [:x-greater-than-y :z-greater-than-x] (order-in-words 4 3 5))))
+  (testing "when x, y and z are in ascending order"
+    (is (= [:z-greater-than-x] (order-in-words 3 4 5) ))))
