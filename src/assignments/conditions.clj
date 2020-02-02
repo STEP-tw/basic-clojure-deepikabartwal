@@ -95,7 +95,7 @@
   (order-in-words 2 3 4) => [:z-greater-than-x]"
   {:level        :easy
    :use          '[cond-> conj]
-   :implemented? false}
+   :implemented? true}
   [x y z] (cond-> []
                   (> x y) (conj :x-greater-than-y)
                   (> y z) (conj :y-greater-than-z)
@@ -113,7 +113,7 @@
   \"\"  -> :empty-string"
   {:level        :easy
    :use          '[case]
-   :implemented? false}
+   :implemented? true}
   [zero-like-value] (case zero-like-value
                       0 :zero
                       ([] '())  :empty
@@ -130,4 +130,6 @@
   {:level :easy
    :use '[as-> reverse]
    :implemented? false}
-  [coll])
+  [coll] (as-> coll seqs
+               (map inc seqs)
+               (concat (reverse seqs) [0] seqs)))

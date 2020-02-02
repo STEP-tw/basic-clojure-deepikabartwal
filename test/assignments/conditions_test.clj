@@ -97,3 +97,7 @@
     (is (= :empty-string (zero-aliases ""))))
   (testing "when non zero or empty values are provided"
     (is (= :not-zero (zero-aliases 2)))))
+
+(deftest make-a-palindrome
+  (testing "turning a list into palindrome"
+    (is (= '(4 3 2 0 2 3 4) (zero-separated-palindrome [1 2 3])))))
