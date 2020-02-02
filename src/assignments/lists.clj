@@ -29,7 +29,11 @@
    :use          '[loop recur]
    :dont-use     '[filter]
    :implemented? false}
-  [pred coll])
+  [pred coll] (loop [coll coll
+                     result []]
+                (if (empty? coll)
+                  result
+                  (recur (rest coll) (if (pred (first coll)) (conj result (first coll)) result)))))
 
 (defn reduce'
   "Implement your own multi-arity version of reduce
