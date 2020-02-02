@@ -81,3 +81,19 @@
     (is (= [:x-greater-than-y :z-greater-than-x] (order-in-words 4 3 5))))
   (testing "when x, y and z are in ascending order"
     (is (= [:z-greater-than-x] (order-in-words 3 4 5) ))))
+
+(deftest zero-like-value-aliases
+  (testing "when zero is passed as input"
+    (is (= :zero (zero-aliases 0))))
+  (testing "when an empty list is passed as input"
+    (is (= :empty (zero-aliases []))))
+  (testing "when empty list is passed as input"
+    (is (= :empty (zero-aliases '()))))
+  (testing "when empty map is passed as input"
+    (is (= :empty-map (zero-aliases {}))))
+  (testing "when empty set is passed as input"
+    (is (= :empty-set (zero-aliases #{}))))
+  (testing "when empty string is passed as input"
+    (is (= :empty-string (zero-aliases ""))))
+  (testing "when non zero or empty values are provided"
+    (is (= :not-zero (zero-aliases 2)))))
