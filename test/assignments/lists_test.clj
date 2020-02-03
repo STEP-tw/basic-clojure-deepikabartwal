@@ -17,4 +17,11 @@
     )
   (testing "reduce"
     (testing "adding"
-      (is (= 6 (reduce' + [1 2 3]))))))
+      (is (= 6 (reduce' + [1 2 3])))))
+  (testing "count"
+    (testing "collection of length 4"
+      (is (= 4 (count' [1 2 3 4]))))
+    (testing "collection of length 0"
+      (is (= 0 (count' []))))
+    (testing "collection of length 6"
+      (is (= 6 (count' '(1 2 3 4 5 6)))))))
