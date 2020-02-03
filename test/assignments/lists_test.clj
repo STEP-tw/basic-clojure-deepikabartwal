@@ -50,4 +50,11 @@
       (is (false? (every?' even? [ 1 2 3 4]))))
     (testing "for empty collection"
       (is (true? (every?' even? [])))))
+  (testing "some?'"
+    (testing "when some elements satisfy the predicate"
+      (is (true? (some?' even? [1 2 3 4]))))
+    (testing "When none of the elements satisfy the predicate"
+      (is (false? (some?' even? [1 3 5 7]))))
+    (testing "For empty list"
+      (is (false? (some?' even? [])))))
   )
