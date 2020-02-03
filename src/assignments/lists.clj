@@ -84,7 +84,12 @@
    :use          '[loop recur and]
    :dont-use     '[every?]
    :implemented? false}
-  ([pred coll]))
+  ([pred coll]
+   (loop [coll coll
+          result true]
+     (if (empty? coll)
+       result
+       (recur (rest coll) (and result (pred (first coll))))))))
 
 (defn some?'
   "Implement your own version of some that checks if at least one
@@ -95,7 +100,8 @@
    :use          '[loop recur or]
    :dont-use     '[some]
    :implemented? false}
-  ([pred coll]))
+  ([pred coll]
+   (loop [coll])))
 
 (defn ascending?
   "Verify if every element is greater than or equal to its predecessor"
