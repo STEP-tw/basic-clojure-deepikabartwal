@@ -7,19 +7,20 @@
   {:level        :medium
    :use          '[loop recur]
    :dont-use     '[map]
-   :implemented? false}
-  [f & colls] (if (= (count colls) 1)
-                (loop [coll (first colls)
-                       result []]
-                  (if (empty? coll)
-                    result
-                    (recur (rest coll) (conj result (f (first coll))))))
-                (loop [colls colls
-                       result []]
-                  (if (some empty? colls)
-                    result
-                    (recur (map' rest colls) (conj result (apply f (map' first colls))))))
-                ))
+   :implemented? true}
+  [f & colls]
+  (if (= (count colls) 1)
+    (loop [coll (first colls)
+           result []]
+      (if (empty? coll)
+        result
+        (recur (rest coll) (conj result (f (first coll))))))
+    (loop [colls colls
+           result []]
+      (if (some empty? colls)
+        result
+        (recur (map' rest colls) (conj result (apply f (map' first colls))))))
+    ))
 
 (defn filter'
   "Implement a non-lazy version of filter that accepts a
@@ -28,12 +29,13 @@
   {:level        :easy
    :use          '[loop recur]
    :dont-use     '[filter]
-   :implemented? false}
-  [pred coll] (loop [coll coll
-                     result []]
-                (if (empty? coll)
-                  result
-                  (recur (rest coll) (if (pred (first coll)) (conj result (first coll)) result)))))
+   :implemented? true}
+  [pred coll]
+  (loop [coll coll
+         result []]
+    (if (empty? coll)
+      result
+      (recur (rest coll) (if (pred (first coll)) (conj result (first coll)) result)))))
 
 (defn reduce'
   "Implement your own multi-arity version of reduce
@@ -43,8 +45,14 @@
    :use          '[loop recur]
    :dont-use     '[reduce]
    :implemented? false}
-  ([f coll])
-  ([f init coll]))
+  ([f coll]
+   (loop [seqs (rest coll)
+          result (first coll)]
+     (if (empty? seqs)
+       result
+       (recur (rest seqs) (f result (first seqs))))))
+  ([f init coll]
+   (reduce' f (cons init coll))))
 
 (defn count'
   "Implement your own version of count that counts the
