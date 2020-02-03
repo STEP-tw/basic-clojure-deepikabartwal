@@ -39,5 +39,7 @@
       (is (= '([3 4] [1 2]) (reverse' {1 2 3 4})))
       )
     (testing "on a number"
-      (is (= nil (reverse' 1)))))
+      (is (= nil (reverse' 1))))
+    (testing "on a string"
+      (is (= '(\d \c \b \a) (reverse' "abcd")))))
   )
