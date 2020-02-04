@@ -102,4 +102,8 @@
   (testing "square of first number"
     (testing "non-empty collection"
       (is (= [16 16 16] (sqr-of-the-first [4 5 6])))))
+
+  (testing "double up"
+    (testing "with integer sequence"
+      (is (= [1 1 2 2 3 3] (double-up [1 2 3])))))
   )
