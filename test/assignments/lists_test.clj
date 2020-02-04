@@ -98,4 +98,8 @@
       (is (= 4 (index-of [1 2 3 4 5 6] 5))))
     (testing "element not-present in collection"
       (is (= -1 (index-of [1 2 3 4 5 6] 9)))))
+
+  (testing "square of first number"
+    (testing "non-empty collection"
+      (is (= [16 16 16] (sqr-of-the-first [4 5 6])))))
   )

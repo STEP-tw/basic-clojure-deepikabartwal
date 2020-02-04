@@ -235,8 +235,10 @@
   [4 5 6] => [16 16 16]"
   {:level        :easy
    :use          '[map constantly let]
-   :implemented? false}
-  [coll])
+   :implemented? true}
+  [coll]
+  (let [first-number (first coll)]
+    (map (constantly (* first-number first-number)) coll)))
 
 (defn wrap-in-vector
   [nesting-factor x]
