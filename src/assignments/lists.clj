@@ -112,7 +112,7 @@
   {:level        :easy
    :use          '[partition every? partial apply <=]
    :dont-use     '[loop recur]
-   :implemented? false}
+   :implemented? true}
   [coll]
   (
     every? (partial apply <=) (partition 2 1 coll))

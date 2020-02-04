@@ -17,7 +17,9 @@
    :implemented? true}
   [x y]
   (
-    if-not (zero? y) (/ x y) :infinity)
+    if-not (zero? y)
+    (/ x y)
+    :infinity)
   )
 
 (defn harishchandra
@@ -39,7 +41,9 @@
    :implemented? true}
   [x]
   (
-    if-let [x x] x :ashwathama)
+    if-let [x x]
+    x
+    :ashwathama)
   )
 
 (defn duplicate-first
