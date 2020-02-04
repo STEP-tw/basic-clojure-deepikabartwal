@@ -144,8 +144,9 @@
   {:level        :medium
    :use          '[map + rest]
    :dont-use     '[loop recur partition]
-   :implemented? false}
-  [coll])
+   :implemented? true}
+  [coll]
+  (map + coll (rest coll)))
 
 (defn max-three-digit-sequence
   "Given a collection of numbers, find a three digit sequence that
@@ -235,6 +236,13 @@
    :implemented? false}
   [coll])
 
+(defn wrap-in-vector
+  [nesting-factor x]
+  (->> x
+       (iterate vector)
+       (take nesting-factor)
+       (last)))
+
 (defn russian-dolls
   "Given a collection and a number, wrap each element in a nested vector
   with a nesting factor of the number provided.
@@ -242,8 +250,9 @@
   {:level        :medium
    :use          '[iterate mapv partial vector drop first ->>]
    :dont-use     '[for loop recur reduce]
-   :implemented? false}
-  [coll nesting-factor])
+   :implemented? true}
+  [coll nesting-factor]
+  (mapv (partial wrap-in-vector nesting-factor) coll))
 
 (defn split-comb
   "Given a collection, return a new sequence where the first

@@ -64,4 +64,16 @@
       (is (true? (ascending? [1 2 3 4]))))
     (testing "when the collection isn't in ascending order"
       (is (false? (ascending? [1 2 5 4])))))
+
+  (testing "russian doll"
+    (testing "Wrapping numbers in a list"
+      (is (= [[[1]] [[2]] [[3]]] (russian-dolls [1 2 3] 3))))
+    (testing "When nesting limit is one"
+      (is (= [1 2 3 4] (russian-dolls [1 2 3 4] 1)))))
+
+  (testing "sum of adjacent digits"
+    (testing "sum of adjacent digit of positive integers"
+      (is (= [3 5] (sum-of-adjacent-digits [1 2 3]))))
+    (testing "sum adjacent digit with a few negative integers"
+      (is (= [-1 1] (sum-of-adjacent-digits [1 -2 3])))))
   )
