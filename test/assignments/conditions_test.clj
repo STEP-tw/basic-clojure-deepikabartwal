@@ -41,7 +41,7 @@
     (is (zero? (yudishtira 0)))))
 
 (deftest duplicating-first
-  (testing "idk what to write"
+  (testing "when given a coll of numbers"
     (is (= [1 1 2 3] (duplicate-first [1 2 3]))))
   (testing "when given empty coll"
     (is (nil? (duplicate-first []))))

@@ -114,7 +114,9 @@
    :dont-use     '[loop recur]
    :implemented? false}
   [coll]
-  (every? (partial apply <=) (partition 2 1 coll)))
+  (
+    every? (partial apply <=) (partition 2 1 coll))
+  )
 
 (defn distinct'
   "Implement your own lazy sequence version of distinct which returns
