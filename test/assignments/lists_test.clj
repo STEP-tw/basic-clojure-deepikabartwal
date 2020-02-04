@@ -76,4 +76,8 @@
       (is (= [3 5] (sum-of-adjacent-digits [1 2 3]))))
     (testing "sum adjacent digit with a few negative integers"
       (is (= [-1 1] (sum-of-adjacent-digits [1 -2 3])))))
+
+  (testing "transpose"
+    (testing "of 2 x 2 matrix"
+      (is (= [[1 3] [2 4]] (transpose [[1 2] [3 4]])))))
   )
