@@ -92,4 +92,10 @@
       (is (= [1 2 0 4 15 0 7] (muted-thirds [1 2 8 4 15 2 7]))))
     (testing "for less than three"
       (is (= [1 2] (muted-thirds [1 2])))))
+
+  (testing "index of"
+    (testing "element present in collection"
+      (is (= 4 (index-of [1 2 3 4 5 6] 5))))
+    (testing "element not-present in collection"
+      (is (= -1 (index-of [1 2 3 4 5 6] 9)))))
   )
