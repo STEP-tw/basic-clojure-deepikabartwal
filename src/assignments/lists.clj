@@ -135,6 +135,12 @@
   [coll]
   (reduce add-if-doesn't-contain [] coll))
 
+
+(defn add-if-not-same-as-last [coll number]
+  (if (= (last coll) number)
+    coll
+    (conj coll number)))
+
 (defn dedupe'
   "Implement your own lazy sequence version of dedupe which returns
   a collection with consecutive duplicates eliminated (like the uniq command).
@@ -143,7 +149,8 @@
    :use          '[lazy-seq conj let :optionally letfn]
    :dont-use     '[loop recur dedupe]
    :implemented? false}
-  [coll])
+  [coll]
+  (reduce add-if-not-same-as-last [] coll))
 
 (defn sum-of-adjacent-digits
   "Given a collection, returns a map of the sum of adjacent digits.
