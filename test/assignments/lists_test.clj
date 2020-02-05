@@ -146,4 +146,10 @@
       (is (true? (palindrome? "NaN"))))
     (testing "not a palindrome"
       (is (false? (palindrome? [1 2 3])))))
+
+  (testing "distinct"
+    (testing "with no duplicates"
+      (is (= [1 2 3] (distinct' [1 2 3]))))
+    (testing "with duplicates"
+      (is (= [1 2 3] (distinct' [1 1 2 3 2])))))
   )

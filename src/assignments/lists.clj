@@ -118,6 +118,12 @@
     every? (partial apply <=) (partition 2 1 coll))
   )
 
+(defn add-if-doesn't-contain [coll number]
+  (if (nil? ((set coll) number))
+      (conj coll number)
+      coll)
+  )
+
 (defn distinct'
   "Implement your own lazy sequence version of distinct which returns
   a collection with duplicates eliminated. Might have to implement another
@@ -126,7 +132,8 @@
    :use          '[lazy-seq set conj let :optionally letfn]
    :dont-use     '[loop recur distinct]
    :implemented? false}
-  [coll])
+  [coll]
+  (reduce add-if-doesn't-contain [] coll))
 
 (defn dedupe'
   "Implement your own lazy sequence version of dedupe which returns
@@ -232,7 +239,7 @@
   elements whose index is either divisible by three or five"
   {:level        :easy
    :use          '[keep-indexed when :optionally map-indexed filter]
-   :implemented? false}
+   :implemented? true}
   [coll]
   (keep-indexed #(when (or (zero? (mod %1 3)) (zero? (mod %1 5))) %2) coll))
 
@@ -294,7 +301,7 @@
   {:level        :easy
    :use          '[empty? loop recur butlast rest]
    :dont-use     '[reverse]
-   :implemented? false}
+   :implemented? true}
   [coll]
   (loop [coll coll]
     (cond
