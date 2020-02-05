@@ -128,9 +128,9 @@
   [coll]
   (letfn [(get-distinct-seq [res coll]
             (lazy-seq (when-let [x (first coll)]
-                (if (nil? (res x))
-                    (cons x (get-distinct-seq (conj res x) (rest coll)))
-                    (get-distinct-seq res (rest coll))))))]
+                        (if (nil? (res x))
+                          (cons x (get-distinct-seq (conj res x) (rest coll)))
+                          (get-distinct-seq res (rest coll))))))]
     (get-distinct-seq #{} coll))
   )
 
@@ -149,8 +149,7 @@
               (when-let [x (first coll)]
                 (if-not (= res x)
                   (cons x (remove-consecutive-repeatitions x (rest coll)))
-                  (remove-consecutive-repeatitions res (rest coll))
-                  ))))]
+                  (remove-consecutive-repeatitions res (rest coll))))))]
     (remove-consecutive-repeatitions nil coll))
   )
 
