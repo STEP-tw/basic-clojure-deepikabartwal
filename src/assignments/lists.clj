@@ -10,12 +10,12 @@
    :implemented? true}
   [f & colls]
   (if (= (count colls) 1)
-    (loop [coll (first colls)
+    (loop [coll   (first colls)
            result []]
       (if (empty? coll)
         result
         (recur (rest coll) (conj result (f (first coll))))))
-    (loop [colls colls
+    (loop [colls  colls
            result []]
       (if (some empty? colls)
         result
@@ -31,7 +31,7 @@
    :dont-use     '[filter]
    :implemented? true}
   [pred coll]
-  (loop [coll coll
+  (loop [coll   coll
          result []]
     (if (empty? coll)
       result
@@ -46,7 +46,7 @@
    :dont-use     '[reduce]
    :implemented? true}
   ([f coll]
-   (loop [seqs (rest coll)
+   (loop [seqs   (rest coll)
           result (first coll)]
      (if (empty? seqs)
        result
@@ -62,7 +62,7 @@
    :dont-use     '[count]
    :implemented? true}
   ([coll]
-   (loop [coll coll
+   (loop [coll  coll
           count 0]
      (if (empty? coll)
        count
@@ -101,7 +101,7 @@
    :dont-use     '[some]
    :implemented? true}
   ([pred coll]
-   (loop [coll coll
+   (loop [coll   coll
           result false]
      (if (empty? coll)
        result
@@ -117,12 +117,6 @@
   (apply <= coll)
   )
 
-(defn add-if-doesn't-contain [coll number]
-  (if (nil? ((set coll) number))
-      (conj coll number)
-      coll)
-  )
-
 (defn distinct'
   "Implement your own lazy sequence version of distinct which returns
   a collection with duplicates eliminated. Might have to implement another
@@ -132,12 +126,13 @@
    :dont-use     '[loop recur distinct]
    :implemented? false}
   [coll]
-  (reduce add-if-doesn't-contain [] coll))
-
-(defn add-if-not-same-as-last [coll number]
-  (if (= (last coll) number)
-    coll
-    (conj coll number)))
+  (letfn [(get-distinct-seq [res coll]
+            (lazy-seq (when-let [x (first coll)]
+                (if (nil? (res x))
+                    (cons x (get-distinct-seq (conj res x) (rest coll)))
+                    (get-distinct-seq res (rest coll))))))]
+    (get-distinct-seq #{} coll))
+  )
 
 (defn dedupe'
   "Implement your own lazy sequence version of dedupe which returns
@@ -148,7 +143,16 @@
    :dont-use     '[loop recur dedupe]
    :implemented? false}
   [coll]
-  (reduce add-if-not-same-as-last [] coll))
+  (letfn [(remove-consecutive-repeatitions
+            [res coll]
+            (lazy-seq
+              (when-let [x (first coll)]
+                (if-not (= res x)
+                  (cons x (remove-consecutive-repeatitions x (rest coll)))
+                  (remove-consecutive-repeatitions res (rest coll))
+                  ))))]
+    (remove-consecutive-repeatitions nil coll))
+  )
 
 (defn sum-of-adjacent-digits
   "Given a collection, returns a map of the sum of adjacent digits.
@@ -168,7 +172,7 @@
   {:level        :medium
    :use          '[map next nnext max-key partial apply + if ->>]
    :dont-use     '[loop recur partition]
-   :implemented? false}
+   :implemented? true}
   [coll]
   (apply
     max-key (partial apply +)
@@ -327,13 +331,13 @@
    :dont-use     '[.indexOf memfn]
    :implemented? true}
   [coll n]
-  (loop [coll coll
+  (loop [coll        coll
          index-count 0]
     (if (empty? coll)
-         -1
-         (if (= n (first coll))
-           index-count
-           (recur (rest coll) (inc index-count))))))
+      -1
+      (if (= n (first coll))
+        index-count
+        (recur (rest coll) (inc index-count))))))
 
 (defn validate-sudoku-grid
   "Given a 9 by 9 sudoku grid, validate it."
