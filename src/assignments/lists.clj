@@ -170,7 +170,9 @@
    :use          '[map next nnext max-key partial apply + if ->>]
    :dont-use     '[loop recur partition]
    :implemented? false}
-  [coll])
+  [coll]
+  (->> (map vector coll (next coll) (nnext coll))
+       (apply max-key (partial apply +))))
 
 ;; transpose is a def. Not a defn.
 (def
