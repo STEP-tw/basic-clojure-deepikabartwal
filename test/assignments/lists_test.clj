@@ -112,4 +112,10 @@
       (is (= [1 2 3 4 5 6] (union [1 2 3] [4 5 6]))))
     (testing "with some common element"
       (is (= [1 2 3 4 5] (union [1 2 3] [3 4 5])))))
+
+  (testing "Difference"
+    (testing "with no common elements in both collection"
+      (is (= [4 5 6] (difference [1 2 3] [4 5 6]))))
+    (testing "with some common element"
+      (is (= [4 5] (difference [1 2 3] [3 4 5])))))
   )
