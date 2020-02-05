@@ -124,7 +124,7 @@
   {:level        :medium
    :use          '[lazy-seq set conj let :optionally letfn]
    :dont-use     '[loop recur distinct]
-   :implemented? false}
+   :implemented? true}
   [coll]
   (letfn [(get-distinct-seq [res coll]
             (lazy-seq (when-let [x (first coll)]
@@ -141,7 +141,7 @@
   {:level        :medium
    :use          '[lazy-seq conj let :optionally letfn]
    :dont-use     '[loop recur dedupe]
-   :implemented? false}
+   :implemented? true}
   [coll]
   (letfn [(remove-consecutive-repeatitions
             [res coll]
