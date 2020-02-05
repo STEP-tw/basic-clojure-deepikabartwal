@@ -197,11 +197,15 @@
   ^{:level        :easy
     :use          '[for]
     :dont-use     '[hardcoded-values map filter]
-    :implemented? false}
+    :implemented? true}
   points-around-origin
   "Calculate all the points around the origin
   [-1 -1] [0 -1] [1 -1] etc. There should be 8 points
-  Note this is a def, not a defn")
+  Note this is a def, not a defn"
+  (for [x (range -1 2)
+        y (range -1 2)
+        :when (not= x y 0)]
+    [x y]))
 
 (defn cross-product
   "Given two sequences, generate every combination in the sequence
@@ -229,7 +233,8 @@
   {:level        :easy
    :use          '[keep-indexed when :optionally map-indexed filter]
    :implemented? false}
-  [coll])
+  [coll]
+  (keep-indexed #(when (or (zero? (mod %1 3)) (zero? (mod %1 5))) %2) coll))
 
 (defn sqr-of-the-first
   "Given a collection, return a new collection that contains the

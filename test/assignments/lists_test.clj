@@ -118,4 +118,22 @@
       (is (= [4 5 6] (difference [1 2 3] [4 5 6]))))
     (testing "with some common element"
       (is (= [4 5] (difference [1 2 3] [3 4 5])))))
+
+  (testing "Points around origin"
+    (is (= '([-1 -1]
+             [-1 0]
+             [-1 1]
+             [0 -1]
+             [0 1]
+             [1 -1]
+             [1 0]
+             [1 1]) points-around-origin)))
+
+  (testing "Third or fifth"
+    (testing "with single item"
+      (is (= ["I"] (third-or-fifth ["I"]))))
+    (testing "with collection containing 4 items - last index is 3"
+      (is (= [1 4] (third-or-fifth [1 2 3 4]))))
+    (testing "with collection containing 6 items - last index is 5"
+      (is (= [1 4 6] (third-or-fifth [1 2 3 4 5 6])))))
   )
