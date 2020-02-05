@@ -136,4 +136,14 @@
       (is (= [1 4] (third-or-fifth [1 2 3 4]))))
     (testing "with collection containing 6 items - last index is 5"
       (is (= [1 4 6] (third-or-fifth [1 2 3 4 5 6])))))
+
+  (testing "Palindrome?"
+    (testing "with empty collection"
+      (is (true? (palindrome? []))))
+    (testing "with palindrome list"
+      (is (true? (palindrome? [1 2 1]))))
+    (testing "with string"
+      (is (true? (palindrome? "NaN"))))
+    (testing "not a palindrome"
+      (is (false? (palindrome? [1 2 3])))))
   )

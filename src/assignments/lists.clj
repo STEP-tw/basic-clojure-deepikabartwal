@@ -295,7 +295,12 @@
    :use          '[empty? loop recur butlast rest]
    :dont-use     '[reverse]
    :implemented? false}
-  [coll])
+  [coll]
+  (loop [coll coll]
+    (cond
+      (empty? coll) true
+      (not= (first coll) (last coll)) false
+      :else (recur (rest (butlast coll))))))
 
 (defn index-of
   "index-of takes a sequence and an element and finds the index
