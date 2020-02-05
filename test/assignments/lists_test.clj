@@ -166,4 +166,10 @@
       (is (= [2 -1 2] (max-three-digit-sequence [1 2 -1 2 0]))))
     (testing "end term max"
       (is (= [-1 2 3] (max-three-digit-sequence [1 2 -1 2 3])))))
+
+  (testing "Split comb"
+    (testing "with even sequence"
+      (is (= [1 3 2 4] (split-comb [1 2 3 4]))))
+    (testing "with odd sequence"
+      (is (= [1 3 2 4 5] (split-comb [1 2 3 4 5])))))
   )
