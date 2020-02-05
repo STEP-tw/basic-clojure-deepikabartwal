@@ -106,4 +106,10 @@
   (testing "double up"
     (testing "with integer sequence"
       (is (= [1 1 2 2 3 3] (double-up [1 2 3])))))
+
+  (testing "Union"
+    (testing "with no common elements in both collection"
+      (is (= [1 2 3 4 5 6] (union [1 2 3] [4 5 6]))))
+    (testing "with some common element"
+      (is (= [1 2 3 4 5] (union [1 2 3] [3 4 5])))))
   )
