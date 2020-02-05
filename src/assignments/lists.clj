@@ -134,7 +134,6 @@
   [coll]
   (reduce add-if-doesn't-contain [] coll))
 
-
 (defn add-if-not-same-as-last [coll number]
   (if (= (last coll) number)
     coll
@@ -171,8 +170,10 @@
    :dont-use     '[loop recur partition]
    :implemented? false}
   [coll]
-  (->> (map vector coll (next coll) (nnext coll))
-       (apply max-key (partial apply +))))
+  (apply
+    max-key (partial apply +)
+    (map vector coll (next coll) (nnext coll)))
+  )
 
 ;; transpose is a def. Not a defn.
 (def
