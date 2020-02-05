@@ -84,12 +84,12 @@
    :use          '[loop recur and]
    :dont-use     '[every?]
    :implemented? true}
-  ([pred coll]
-   (loop [coll coll
-          result true]
-     (if (empty? coll)
-       result
-       (recur (rest coll) (and result (pred (first coll))))))))
+  [pred coll]
+  (loop [coll   coll
+         result true]
+    (if (empty? coll)
+      result
+      (recur (rest coll) (and result (pred (first coll)))))))
 
 (defn some?'
   "Implement your own version of some that checks if at least one
@@ -114,8 +114,7 @@
    :dont-use     '[loop recur]
    :implemented? true}
   [coll]
-  (
-    every? (partial apply <=) (partition 2 1 coll))
+  (apply <= coll)
   )
 
 (defn add-if-doesn't-contain [coll number]
