@@ -126,12 +126,9 @@
    :dont-use     '[loop recur distinct]
    :implemented? true}
   [coll]
-  (letfn [(get-distinct-seq [res coll]
-            (lazy-seq (when-let [x (first coll)]
-                        (if (nil? (res x))
-                          (cons x (get-distinct-seq (conj res x) (rest coll)))
-                          (get-distinct-seq res (rest coll))))))]
-    (get-distinct-seq #{} coll))
+  (lazy-seq
+    (when-let [x (first coll)]
+      (cons x (distinct' (filter (partial not= x) coll)))))
   )
 
 (defn dedupe'
@@ -294,7 +291,7 @@
   {:level        :easy
    :use          '[interleave split-at if rem concat take-last]
    :dont-use     '[loop recur map-indexed take drop]
-   :implemented? false}
+   :implemented? true}
   [coll]
   (if (even? (count coll))
       (apply interleave (split-at (quot (count coll) 2) coll))
@@ -346,4 +343,9 @@
   "Given a 9 by 9 sudoku grid, validate it."
   {:level        :hard
    :implemented? false}
-  [grid])
+  [grid]
+  (every? #(= #{1 2 3 4 5 6 7 8 9} (set %1))
+          (mapv vec
+                (map flatten
+                     (mapcat (partial apply map list) (partition 3
+                                                                 (map (partial partition 3) grid)))))))
